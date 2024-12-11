@@ -2,6 +2,7 @@
 #include <dirent.h>
 #include <sys/stat.h>
 #include <time.h>
+#include "time_form.h"
 typedef struct dirent dirent;
 typedef struct stat Stat;
 typedef struct tm tm;
@@ -28,15 +29,8 @@ int main(){
             snprintf(file_path, sizeof(file_path), "%s/%s", path, current_file->d_name);
             if ((stat(file_path, &file_state)) == 0){
                 time_t access_time = file_state.st_atime;
-                tm *local_time = localtime(&access_time);
                 char formated_time[32];
-                if (local_time != NULL) {
-                    strftime(formated_time, sizeof(formated_time), "%a, %d %b %Y %I:%M %p", local_time);
-                } 
-                else {
-                    snprintf(formated_time, sizeof(formated_time), "Unknown time");
-                }
-                strftime(formated_time, sizeof(formated_time), "%a, %d %b %Y %I:%M %p", local_time);
+                time_fm(access_time, formated_time);
                 printf("%s\n", current_file->d_name);
                 printf("File size: %ld bytes \n", file_state.st_size);
                 printf("Last access time: %s \n\n", formated_time);
@@ -55,15 +49,8 @@ int main(){
             snprintf(file_path, sizeof(file_path), "%s/%s", path, current_file->d_name);
             if ((stat(file_path, &file_state)) == 0){
                 time_t access_time = file_state.st_atime;
-                tm *local_time = localtime(&access_time);
                 char formated_time[32];
-                if (local_time != NULL) {
-                    strftime(formated_time, sizeof(formated_time), "%a, %d %b %Y %I:%M %p", local_time);
-                } 
-                else {
-                    snprintf(formated_time, sizeof(formated_time), "Unknown time");
-                }
-                strftime(formated_time, sizeof(formated_time), "%a, %d %b %Y %I:%M %p", local_time);
+                time_fm(access_time, formated_time);
                 printf("%s\n", current_file->d_name);
                 printf("File size: %ld bytes \n", file_state.st_size);
                 printf("Last access time: %s \n\n", formated_time);
@@ -79,15 +66,8 @@ int main(){
             snprintf(file_path, sizeof(file_path), "%s/%s", path, current_file->d_name);
             if ((stat(file_path, &file_state)) == 0){
                 time_t access_time = file_state.st_atime;
-                tm *local_time = localtime(&access_time);
                 char formated_time[32];
-                if (local_time != NULL) {
-                    strftime(formated_time, sizeof(formated_time), "%a, %d %b %Y %I:%M %p", local_time);
-                } 
-                else {
-                    snprintf(formated_time, sizeof(formated_time), "Unknown time");
-                }
-                strftime(formated_time, sizeof(formated_time), "%a, %d %b %Y %I:%M %p", local_time);
+                time_fm(access_time, formated_time);
                 printf("%s\n", current_file->d_name);
                 printf("File size: %ld bytes \n", file_state.st_size);
                 printf("Last access time: %s \n\n", formated_time);
